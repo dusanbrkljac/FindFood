@@ -59,7 +59,8 @@ header{
     padding: 10px;
     justify-content: space-between;
     align-items: center;
-    background: #caebf2;
+    /* background: #caebf2; */
+    background: rgb(41, 36, 176);
 }
 .title{
     display: flex;
