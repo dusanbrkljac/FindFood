@@ -4,8 +4,19 @@
         <p> Pokusajte ponovo </p>
         <p> {{error}} </p>      
     </base-dialog>
+
+    <base-dialog :show="!!regis" title="Uspeno ste zavrsili registraciju" @close="closeError"> 
+        <h1>Sad mozete da se logujete na svoj nalog</h1>
+        <p>{{regis}}</p>
+    </base-dialog>
+
    <base-card>  
+     <section>
+            <p>1. Prvo je neophodno napraviti registraciju </p>
+            <p>2. A ukoliko vec imate nalog, neophodno je samo odratiti Login</p>
+     </section>
     <form @submit.prevent="add">
+          
         <div class="btn-chose">
             <base-button mode="outline" type="button" class="btn" @click="putLogin"> Login </base-button>
             <base-button mode="outline" type="button" class="btn" @click="putRegister"> Register </base-button>
@@ -32,7 +43,8 @@ export default {
             email: '',
             password: '',
             mode: 'singin',
-            error: null
+            error: null,
+            regis: null,
         }
     },
     computed:{
@@ -50,31 +62,34 @@ export default {
                 this.error = 'Unesite obavezna polja!'
                 return;
             }
-            const emailUser = this.email;
-            const passwordUser = this.password;
+            const user = {
+                emailUser: this.email,
+                passwordUser: this.password,
+            }  
 
             try {
                 if(this.mode === 'singup'){
-                 await this.$store.dispatch('setUser',{
-                    emailUser,
-                    passwordUser
-                })
+                 await this.$store.dispatch('setUser',user)
                     this.$router.replace('/auth')
-                }
+                    this.regis = '"uspeno registrovanjse"'
+                }  
                 else{
-                    await this.$store.dispatch('logUser',{
-                        emailUser,
-                        passwordUser
-                    })
+                    await this.$store.dispatch('logUser',user)
                     this.$router.replace('/')
-                }                          
-             
+                }  
+                setTimeout(() => {
+                    this.regis = null;                        
+                }, 15000);
             } catch (error) {
                 this.error = error
-            }        
+            }
+            this.email = '';
+            this.password = '' ;
+
            },
         closeError(){
             this.error = null;
+            this.regis = null;
         },
         putLogin(){
             this.mode = 'singin'
@@ -88,10 +103,8 @@ export default {
 
 <style scoped>
 form{
-    width: 60%;
+    width: 80%;
     margin: 20px auto;
-    /* border: 1px solid black;
-    box-shadow: 0px 0px 1px 1px blue; */
     padding: 10px;
 }
 div{
@@ -99,14 +112,26 @@ div{
     flex-direction: column;
     margin: 4px auto;
 }
-
 .btn-chose{
     display: flex;
-    flex-direction: row;
-    margin-bottom: 30px;
+    align-items: center;
+    margin-bottom: 25px;
 }
 .btn{
-    width: 30%;
+    width: 70%;
+    padding: 5px;
+    margin: 2px 0px;
 }
-
+@media (min-width: 600px) {
+    form{
+        width: 55%;
+    }
+    .btn-chose{
+        flex-direction: row;
+    }
+    .btn{
+        width: 35%;
+        margin: 2px 2px;
+    }
+}
 </style>

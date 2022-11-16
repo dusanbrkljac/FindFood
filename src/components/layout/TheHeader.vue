@@ -4,7 +4,7 @@
             <base-button link to="/" > Home</base-button>
         </div>
 
-        <div>
+        <div class="title-desc">
             <h2> Najbolji sajt za sve koji vole da kuvaju!</h2>
         </div>
         
@@ -54,13 +54,17 @@ export default {
 
 
 <style scoped>
+.title-desc{
+    display: none;
+}
+
 header{
     display: flex;
     padding: 10px;
     justify-content: space-between;
     align-items: center;
-    /* background: #caebf2; */
-    background: rgb(41, 36, 176);
+    background: #caebf2; 
+    /* background: rgb(41, 36, 176); */
 }
 .title{
     display: flex;
@@ -80,4 +84,9 @@ img{
     color: black;
 }
 
+@media (min-width: 600px) {
+    .title-desc{
+        display: block;
+    }
+}
 </style>

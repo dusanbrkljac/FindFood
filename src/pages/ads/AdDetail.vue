@@ -61,22 +61,27 @@ h4{
     font-size: 25px;
 }
 .main{
-    padding: 20px;
+    /* padding: 20px; */
     list-style: none;
     background: beige;
-    min-width: 250px;
-    margin: 0px 10px;
+    /* min-width: 250px; */
+    /* margin: 0px 10px; */
 }
-.header{
+@media (min-width: 600px) {
+   .header{
     display: flex;
     justify-content: space-between;
+  }
+  .btn{
+    padding: 7px;
+    background: #caebf2; 
+    border-radius: 24px;
+    }
 }
-.btn{
-    padding: 20px ;
-    background: rgb(209, 202, 195);
-    border-radius: 50px;
-}
-span{
+
+
+
+/* span{
     font-weight: bold;
-}
+} */
 </style>

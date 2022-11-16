@@ -127,9 +127,17 @@ section{
    color: rgb(168, 132, 59);
 }
 
-ul{
+/* ul{
     display: flex;
     flex-wrap: wrap;
+} */
+
+@media (min-width: 600px) {
+   ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 }
 
 </style>

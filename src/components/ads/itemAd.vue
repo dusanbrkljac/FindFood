@@ -32,15 +32,22 @@ export default {
 
 
 <style scoped>
+
 li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     list-style: none;
-    box-shadow: 1px 1px 2px 2px rgb(137, 95, 77);
+    box-shadow: 1px 1px 2px 2px #caebf2; 
     background: beige;
     margin: 10px;
-    max-height: 170px;
 }
-
+@media (min-width: 600px) {
+    li{
+        width: 25%;
+    }
+}
 span{
     font-weight: bold;
 }
