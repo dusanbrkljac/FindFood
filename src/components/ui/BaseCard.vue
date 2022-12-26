@@ -8,9 +8,9 @@
 
 <style scoped>
 div{
-    padding: 20px;
+    padding: 40px 20px;
     box-shadow: 1px 1px 2px 2px rgb(78, 72, 72);
     width: 70%;
-    margin: 40px auto;
+    backdrop-filter: blur(2px);
 }
 </style>

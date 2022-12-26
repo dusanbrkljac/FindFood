@@ -1,7 +1,14 @@
-<template>
-    <register @add-user="newAddUser">
+<template >
+  <section>
+   
 
-    </register>
+    <img v-bind:src="require('./../../assets/reg.jpg')" />
+
+    <base-card class="all-form">
+        <register @add-user="newAddUser">
+        </register>
+    </base-card>
+  </section>
 </template>
 
 
@@ -21,3 +28,28 @@ export default {
 
 }
 </script>
+
+
+<style scoped>
+
+section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+img{
+    width: 100%;
+    height: 80vh;
+}
+.all-form{
+    position: absolute;
+}
+
+@media (min-width: 600px) {
+    .all-form{
+        width: 50%;
+    }
+}
+
+</style>

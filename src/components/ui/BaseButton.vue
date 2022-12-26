@@ -36,8 +36,8 @@ a {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   font: inherit;
-  background-color: #3a0061;
-  border: 1px solid #3a0061;
+  /* background-color: #3a0061; */
+  /* border: 1px solid #3a0061; */
   color: white;
   cursor: pointer;
   border-radius: 30px;
@@ -49,26 +49,37 @@ a:hover,
 a:active,
 button:hover,
 button:active {
-  background-color: #270041;
-  border-color: #270041;
+  /* background-color: #270041;
+  border-color: #270041; */
+  background: white;
+  color: black;
+
 }
 
 .flat {
   background-color: transparent;
   color: #3a0061;
-  border: none;
+  /* border: none; */
+
 }
 
 .outline {
-  background-color: transparent;
-  border-color: #270041;
-  color: #270041;
+   background: #ebcdac;
+
+  /* border-color: #270041; */
+  /* color: #270041; */
+  /* color: black; */
+  font-size: 25px;
+  color: black;
+  font-weight: bold;
 }
+
 
 .flat:hover,
 .flat:active,
 .outline:hover,
 .outline:active {
-  background-color: #edd2ff;
+  /* background-color: #edd2ff; */
+   background-color: transparent;
 }
 </style>

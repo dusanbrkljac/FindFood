@@ -1,29 +1,67 @@
 <template>
     <header>
-        <div class="title">
-            <base-button link to="/" > Home</base-button>
+      <h4 class="mainTitle">Najbolje sajt za one koji vole da kuvaju!</h4>
+      <div class="header">
+        <div class="backgorund-menu" v-if="menuIconOpen" > 
+            <!-- <p class="close" @click="closeMenu" >Exit</p> -->
+            <img class="close" @click="closeMenu" src='./../../assets/close.png' alt="">
         </div>
 
-        <div class="title-desc">
-            <h2> Najbolji sajt za sve koji vole da kuvaju!</h2>
+        <div class="menu-icon" @click="openMenu"  >
+            <img src='./../../assets/menu.png' alt="">
+        </div>
+
+        <div >
+            <img class="logo" src='./../../assets/logo.jpg' alt="Home Logo" @click="goHome" >
+        </div>
+
+
+        <div class="menu-list" v-if="menuIconOpen"  >
+            <ul v-if="!isActive">
+                <base-button link to="/" @click="closeMenu"> Home</base-button>
+                <base-button link to="/auth" @click="closeMenu"> Login</base-button>
+            </ul>
+            <ul v-else>
+                <base-button link to="/" @click="closeMenu" > Home</base-button>
+                <base-button  link to="/registration" v-if="isFireBaseReg && !isReg" @click="closeMenu"> Registration</base-button>
+                <base-button  link to="/myProfil" v-if="isReg" class="link" @click="closeMenu" >{{isUserReg.name.toUpperCase()}}  {{isUserReg.lastName.toUpperCase()}} </base-button>
+                <base-button link  @click="logout(); closeMenu();"> LogOut </base-button> 
+            </ul>
+        </div>
+
+           <div class="menu-list-desktop"   >
+            <ul v-if="!isActive">
+                <base-button link to="/" > Home</base-button>
+                <base-button link to="/auth" > Login</base-button>
+            </ul>
+            <ul v-else>
+                <base-button link to="/" > Home</base-button>
+                <base-button  link to="/registration" v-if="isFireBaseReg && !isReg"> Registration</base-button>
+                <base-button  link to="/myProfil" v-if="isReg" class="link">{{isUserReg.name.toUpperCase()}}  {{isUserReg.lastName.toUpperCase()}} </base-button>
+                <base-button link @click="logout"> LogOut </base-button> 
+            </ul>
         </div>
         
-        <ul v-if="!isActive">
-            <base-button link to="/auth" > Login</base-button>
-        </ul>
-        <ul v-else>
-            <base-button  @click="logout"> LogOut </base-button> 
-            <base-button mode="outline" link to="/registration" v-if="isFireBaseReg && !isReg"> Registration</base-button>
-            <base-button mode="outline" link to="/myProfil" v-if="isReg" class="link">{{isUserReg.name.toUpperCase()}}  {{isUserReg.lastName.toUpperCase()}} </base-button>
-
-        </ul>
+      </div>
     </header>
 </template>
 
 <script>
 
 export default {
-    
+    data(){
+        return{
+            menuIconOpen: false,
+
+        }
+    },
+    watch(){
+        if(this.menuIconOpen){
+           console.log('heste')
+        }else{
+            console.log('nije   ')
+        }
+    },
     computed:{
         isFireBaseReg(){
             return this.$store.getters.isRegistered;
@@ -44,49 +82,111 @@ export default {
         logout(){
             this.$store.dispatch('logout')
             this.$router.replace('/')
-        }
+        },
+        goHome(){
+            return this.$router.replace('/')
+        },
+        openMenu(){
+            this.menuIconOpen= true;
+        },
+        closeMenu(){
+            this.menuIconOpen = false;
+        },
+        
     },
     created(){
-        this.$store.dispatch('users/getUsers')
+        this.$store.dispatch('users/getUsers');
     }
 }
 </script>
 
 
 <style scoped>
-.title-desc{
-    display: none;
+.mainTitle{
+    background: #D8C3A5;
+    text-align: center;
 }
 
-header{
+.header{
     display: flex;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background: #caebf2; 
-    /* background: rgb(41, 36, 176); */
+    background: #ebcdac; 
 }
-.title{
-    display: flex;
-    align-items: center;
+.logo{
+    width: 100px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 4px;
 }
-img{
-    width: 70px;
-    border-radius: 25px;
-    margin-right: 4px;
+/* mobile menu*/
+ .menu-icon {
+    cursor: pointer;
 }
-.link{
-    text-decoration: none;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 8px;
+.backgorund-menu{
+    /* background: red;/ */
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+}
+.close{
+    position: absolute;
+    top: 5%;
+    right: 8%;
+    cursor: pointer;
     background: white;
-    color: black;
+    padding: 10px;
+}
+.menu-list{
+    position: absolute;
+    top: 20%;
+    z-index: 20;
+}
+.menu-list-desktop{
+    display: none;
+}
+.overflow{
+    overflow: hidden;
+}
+/* .mobileList{
+    position: absolute;
+    top: 20%;
+    z-index: 20;
+} */
+
+ul{
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
 }
 
 @media (min-width: 600px) {
-    .title-desc{
+    
+    .header{
+        font-size: 30px;
+    }
+
+    /*hamburger and menu */
+    .menu-icon {
+        display: none;
+    }
+
+    .menu-list{
+        display: none;
+    }
+    .menu-list-desktop{
         display: block;
+    }
+    .backgorund-menu{
+        display: none;
+    }
+    ul{
+        display: flex;
+        flex-direction: row;
     }
 }
 </style>

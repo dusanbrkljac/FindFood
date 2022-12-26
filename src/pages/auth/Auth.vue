@@ -1,5 +1,7 @@
-<template>
-   
+<template >
+   <section >
+     <img class="logo" src='./../../assets/loginLogo.jpg' alt="Login Image">
+
      <base-dialog :show="!!error" title="Greska prilikom" @close="closeError"> 
         <p> Pokusajte ponovo </p>
         <p> {{error}} </p>      
@@ -10,8 +12,11 @@
         <p>{{regis}}</p>
     </base-dialog>
 
-   <base-card>  
-     <section>
+
+
+
+   <base-card class="card-login">  
+     <section class="text">
             <p>1. Prvo je neophodno napraviti registraciju </p>
             <p>2. A ukoliko vec imate nalog, neophodno je samo odratiti Login</p>
      </section>
@@ -21,18 +26,20 @@
             <base-button mode="outline" type="button" class="btn" @click="putLogin"> Login </base-button>
             <base-button mode="outline" type="button" class="btn" @click="putRegister"> Register </base-button>
         </div>
-        <div>
+        <div class="form-input">
             <label for="email">Email</label>
             <input type="email" name="email" v-model="email">
         </div>
-        <div>
+        <div class="form-input">
             <label for="password">Password</label>
             <input type="password" name="password" v-model="password">
         </div>
-        <base-button > {{submitButton}}</base-button>
+        <base-button mode="outline"  class="btn"> {{submitButton}}</base-button>
         <!-- <base-button type="button" @click='changeBtn'> {{showBtn}} </base-button> -->
     </form>
    </base-card>
+
+   </section>
 </template>
 
 <script>
@@ -45,6 +52,7 @@ export default {
             mode: 'singin',
             error: null,
             regis: null,
+            twoClose: true
         }
     },
     computed:{
@@ -102,36 +110,76 @@ export default {
 </script>
 
 <style scoped>
-form{
-    width: 80%;
-    margin: 20px auto;
-    padding: 10px;
+img{
+    background-position: 80%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: .85;
+    filter: brightness(80%);
+
+    width: 100%;
+    min-height: 95vh;
 }
-div{
+
+
+.card-login{
+    position: absolute;
+    top: 30%;
+    left: 15%;
     display: flex;
     flex-direction: column;
-    margin: 4px auto;
-}
-.btn-chose{
-    display: flex;
     align-items: center;
-    margin-bottom: 25px;
+}
+.text{
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: white;
+}
+
+form{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-chose{
+    text-align: center;
+    margin: 20px 0px;
+}
+.form-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+label{
+    font-size: 22px;
+    text-decoration: underline;
+    margin: 2px;
+}
+input{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 2px;
 }
 .btn{
-    width: 70%;
-    padding: 5px;
-    margin: 2px 0px;
+   width: 80%;
+   margin: 2px 0px;
 }
 @media (min-width: 600px) {
     form{
-        width: 55%;
+        width: 60%;
     }
+    .text{
+        font-size: 20px;
+    }
+    input{
+        width: 300px;
+    }
+
     .btn-chose{
-        flex-direction: row;
+        display: flex;
     }
-    .btn{
-        width: 35%;
-        margin: 2px 2px;
-    }
+   
 }
 </style>

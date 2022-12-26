@@ -1,6 +1,7 @@
 <template>
 
     <section>
+
         <filter-ads @filter-ads="filterAllAds">
         </filter-ads>
 

@@ -1,8 +1,16 @@
 <template>
+
+    <base-dialog :show="!!error" title="Greska prilikom registracije" @close="closeError"> 
+        <p> Pokusajte ponovo!</p>
+        <p> Morate da popunite sva obavezna polja! </p>      
+    </base-dialog>
+
+
      <form @submit.prevent="addNewUser">
-        <h2>Registration</h2>
+        <h2 class="title">Registration</h2>
         <div class="block">
-            <label for="firstName">First Name</label>
+            <!-- <label for="firstName">ame</label> -->
+              <label for="firstName">First Name</label>
             <input type="text" name="firstName" placeholder="First Name" v-model="firstName">
         </div>
         <div class="block">
@@ -13,19 +21,21 @@
             <label for="age">Age</label>
             <input type="number" name="age" placeholder="Age" v-model="age"> 
         </div>
-     
-        <button>Save</button>
+        <base-button class="outline btn"> Save</base-button>
     </form>
 </template>
 
 <script>
+import BaseButton from '../ui/BaseButton.vue';
 export default {
+  components: { BaseButton },
     emits:['add-user'],
     data(){
         return{
             firstName: '',
             lastName: '',
             age: '',
+            error: null
         }
     },
     methods:{
@@ -33,8 +43,10 @@ export default {
       addNewUser(){
             if(this.firstName === '' || this.lastName === '' || this.age === ''){
                 console.log('ima neke greske')
+                this.error = true
                 return;
             }
+            this.error = null
 
             const newUser = {
               name:  this.firstName,
@@ -49,7 +61,10 @@ export default {
             this.firstName='';
             this.lastName='';
             this.age=''
-        }
+        },
+        closeError(){
+            this.error = null;
+        },
     }
 }
 
@@ -59,15 +74,55 @@ export default {
 
 <style scoped>
 form{
-    width: 50%;
-    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* margin: 10px auto; */
+}
+.title{
+    margin-bottom: 15px;
+    font-size: 25px;
 }
 .block{
     display: flex;
     flex-direction: column;
+    margin: 3px 0px;
 }
-label,input{
-    margin: 3px auto;
-    width: 100%;
+label{
+    font-size: 22px;
+    text-decoration: underline;
+    margin: 3px 0px;
 }
+input{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 4px;
+}
+.btn{
+    margin-top: 20px;
+    width: 50%;
+    cursor: no-drop;
+}
+ 
+ /* uradi ovo */
+.not{
+    cursor: no-drop;
+}
+
+@media (min-width: 600px) {
+    .block{
+        width: 60%;
+        
+    }
+    .title{
+        font-size: 30px;
+    }
+    label{
+        font-size: 25px;
+    }
+}
+
+
 </style>
