@@ -5,15 +5,15 @@
         <filter-ads @filter-ads="filterAllAds">
         </filter-ads>
 
-       <div class="card-title">
-           <h3 class="title">Svi recepti na jednom mestu</h3>     
-       </div>
+        <div class="card-title">
+            <h3 class="title">Svi recepti na jednom mestu</h3>     
+        </div>
 
         <base-spinner v-if="isLoading">
         </base-spinner>
         
-        <ul v-else-if="hasAds && !isLoading">    
-            <item-ad
+        <ul class="allItems" v-else-if="hasAds && !isLoading">    
+            <item-ad class="item"
             v-for="ad in allAds"
             :key="ad.id"
             :id="ad.id"
@@ -26,10 +26,10 @@
             > 
             </item-ad>
 
-            <p v-if="!isCheck && !isLoading"> Trenutno niste nista cekiral od moguceg izbora, izaberite vrstu jela!</p>
+            <p v-if="!isCheck && !isLoading"> Niste izabrali nijednu vrstu jela, izaberite vrstu jela i pogledajte sta sve postoji od recepata!</p>
         </ul>
     
-        <p v-else >Trenutno nema nijednog oglasa, napravite nalog ,registrujte se i dodajte svoj recept</p>
+        <p v-else >Trenutno nema nijednog oglasa u sajtu, napravite nalog ,registrujte se i dodajte svoj prvi recept.</p>
 
     </section>
 
@@ -122,23 +122,28 @@ section{
     margin: 0px auto;
 }
 
+
 .card-title{
+   margin: 40px auto;
    text-align: center;
    font-size: 25px ;
    color: rgb(168, 132, 59);
 }
 
-/* ul{
+.allItems{
+    margin: 60px auto;
     display: flex;
-    flex-wrap: wrap;
-} */
+    flex-direction: column;
+}
 
 @media (min-width: 600px) {
-   ul{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+   .allItems{
+         display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 20px;
+        text-align: center;
+    }
+    
 }
 
 </style>

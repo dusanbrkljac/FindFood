@@ -1,11 +1,13 @@
 <template>
     
     <li>
-        <h3>Naziv jela: <span> {{name.toUpperCase()}}</span> </h3>
-        <p>Vreme pripreme: <span> {{timer}} min  </span> </p>
-        <p>Porcija za: <span> {{portion}} ljudi  </span> </p>
-        <base-button mode="outline" link :to="url">  Vise detalja za ovaj recept
-        </base-button>
+        <h3 class="title"> <span> {{name.toUpperCase()}}</span> </h3>
+        <div class="desc">
+            <p>Vreme pripreme: <span> {{timer}} min  </span> </p>
+            <p>Porcija za: <span> {{portion}} ljudi  </span> </p>
+        </div>
+       
+        <base-button mode="line" link :to="url">Vise detalja</base-button>
       
     </li>
 
@@ -38,17 +40,14 @@ li{
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    list-style: none;
-    box-shadow: 1px 1px 2px 2px #caebf2; 
-    background: beige;
+    box-shadow: 0px 0px 5px 2px   #ebcdac;
     margin: 10px;
 }
-@media (min-width: 600px) {
-    li{
-        width: 25%;
-    }
+.title{
+    text-align: center;
+    padding: 20px;
+    text-decoration: underline;
 }
-span{
-    font-weight: bold;
-}
+
+
 </style>

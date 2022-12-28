@@ -55,11 +55,16 @@ export default {
 .form-control{
     display: flex;
     flex-direction: column;
+    margin: 20px auto;
+    align-items: center;
 }
 div{
-    padding: 3px 0px;
+    padding: 5px 0px;
 }
 h3{
     font-size: 25px;
 }
+ input[type=checbox] {
+    background: red;
+ }
 </style>

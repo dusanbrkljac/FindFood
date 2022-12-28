@@ -7,7 +7,7 @@
 
 
      <form @submit.prevent="addNewUser">
-        <h2 class="title">Registration</h2>
+        <h2 class="title">Prosiri svoju registraciju </h2>
         <div class="block">
             <!-- <label for="firstName">ame</label> -->
               <label for="firstName">First Name</label>
@@ -103,7 +103,7 @@ input{
 .btn{
     margin-top: 20px;
     width: 50%;
-    cursor: no-drop;
+    /* cursor: no-drop; */
 }
  
  /* uradi ovo */

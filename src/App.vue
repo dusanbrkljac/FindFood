@@ -52,4 +52,19 @@ export default {
 ul{
     padding: 0px;
 }
+
+.overflow{
+    overflow: hidden;
+}
+
+.container{
+    width: 90%;
+    margin: 0px auto;
+}
+
+@media (min-width: 1000px) {
+    .container{
+        width: 55%;
+    }
+}
 </style>

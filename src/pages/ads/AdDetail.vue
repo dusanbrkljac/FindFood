@@ -2,20 +2,34 @@
 
     <base-card>
     <section>
-        <h4>Detalji oglasa: {{ad.name.toUpperCase()}} </h4>
+        <h4 class="title">Detalji oglasa: {{ad.name.toUpperCase()}} </h4>
         <div class="main">
             <div class="header">
-                <div> Vrsta jela: <span class="btn" >{{ad.type[0]}}   </span> </div>
-                <div> Vlasnik ovog recepta je: <span class="btn"> {{userName.toUpperCase()}} </span> </div>
+                <div>Vrsta jela: <base-button mode="flat"> {{ad.type[0]}}   </base-button> </div>
+                <div>Oglas postavio: <base-button mode="flat"> {{userName.toUpperCase()}} </base-button> </div>
             </div>
-
-            <h3>Naziv jela: <span>  {{ad.name}} </span></h3>
-            <p>Vreme pripreme hrane: <span> {{ad.timer}} min </span></p>
-            <p>Maksimaan broj ljidi da pojede ovu porciju je: <span> {{ad.portion}} ljudi </span></p>
-
-            <p>Neophodni sastojci su : <span> {{ad.ingredients}} </span></p>
-            <p>Nacin pripreme je sledeci: <span> {{ad.preparation}} ljudi </span></p>
-        
+            <div class="desc">
+                <p class="minTitle"> Naziv jela:</p>
+                <span>  {{ad.name}}   </span>
+            </div>
+            <div class="desc">
+                <p class="minTitle"> Vreme pripreme:</p>
+                <p>  {{ad.timer}} min </p>
+            </div>
+            <div class="desc" >
+                <p class="minTitle"> Porcija za:</p>
+                <p>  {{ad.portion}} ljudi  </p>
+            </div>
+            <div class="desc">
+                <p class="minTitle"> Potrebni sastojci su:</p>
+                <p>  {{ad.ingredients}} </p>
+            </div>
+            <div class="desc">
+                <p class="minTitle"> Nacin pripreme:</p>
+                <p>  {{ad.preparation}} </p>
+            </div>
+      
+      
         </div>
     </section>  
     </base-card>
@@ -56,32 +70,40 @@ export default {
 
 
 <style scoped>
-h4{
-    text-align: center;
-    font-size: 25px;
-}
 .main{
-    /* padding: 20px; */
-    list-style: none;
-    background: beige;
-    /* min-width: 250px; */
-    /* margin: 0px 10px; */
+    display: flex;
+    flex-direction: column;
 }
+.title{ 
+    font-size: 20px;
+    text-align: center;
+    /* margin-bottom: 20px; */
+}
+
+.header{
+    margin: 20px 0px;
+}
+
+.minTitle{
+    text-decoration: underline;
+    color: rgb(90, 7, 90);
+    font-size: 18px;
+    margin-right: 20px;
+}
+.desc{
+    margin: 8px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 @media (min-width: 600px) {
    .header{
-    display: flex;
-    justify-content: space-between;
+        display: flex;
+        justify-content: space-evenly;
   }
-  .btn{
-    padding: 7px;
-    background: #caebf2; 
-    border-radius: 24px;
-    }
+ 
 }
 
-
-
-/* span{
-    font-weight: bold;
-} */
-</style>
+</style> 

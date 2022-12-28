@@ -17,27 +17,27 @@
 
 
         <div class="menu-list" v-if="menuIconOpen"  >
-            <ul v-if="!isActive">
+            <ul v-if="!isActive" class="listItems">
                 <base-button link to="/" @click="closeMenu"> Home</base-button>
                 <base-button link to="/auth" @click="closeMenu"> Login</base-button>
             </ul>
-            <ul v-else>
+            <ul v-else class="listItems">
                 <base-button link to="/" @click="closeMenu" > Home</base-button>
                 <base-button  link to="/registration" v-if="isFireBaseReg && !isReg" @click="closeMenu"> Registration</base-button>
-                <base-button  link to="/myProfil" v-if="isReg" class="link" @click="closeMenu" >{{isUserReg.name.toUpperCase()}}  {{isUserReg.lastName.toUpperCase()}} </base-button>
+                <base-button  link to="/myProfil" v-if="isReg" class="link" @click="closeMenu" >{{isUserReg.name}}  {{isUserReg.lastName}} </base-button>
                 <base-button link  @click="logout(); closeMenu();"> LogOut </base-button> 
             </ul>
         </div>
 
            <div class="menu-list-desktop"   >
-            <ul v-if="!isActive">
+            <ul v-if="!isActive" class="listItems">
                 <base-button link to="/" > Home</base-button>
                 <base-button link to="/auth" > Login</base-button>
             </ul>
-            <ul v-else>
+            <ul v-else class="listItems">
                 <base-button link to="/" > Home</base-button>
                 <base-button  link to="/registration" v-if="isFireBaseReg && !isReg"> Registration</base-button>
-                <base-button  link to="/myProfil" v-if="isReg" class="link">{{isUserReg.name.toUpperCase()}}  {{isUserReg.lastName.toUpperCase()}} </base-button>
+                <base-button  link to="/myProfil" v-if="isReg" class="link">{{isUserReg.name}}  </base-button>
                 <base-button link @click="logout"> LogOut </base-button> 
             </ul>
         </div>
@@ -52,14 +52,16 @@ export default {
     data(){
         return{
             menuIconOpen: false,
-
         }
     },
-    watch(){
-        if(this.menuIconOpen){
-           console.log('heste')
-        }else{
-            console.log('nije   ')
+    watch:{
+        menuIconOpen(value){
+            if(value == true){
+                document.body.classList.add('overflow')
+            }else{
+                document.body.classList.remove('overflow')
+
+            }
         }
     },
     computed:{
@@ -140,6 +142,7 @@ export default {
     cursor: pointer;
     background: white;
     padding: 10px;
+    border-radius: 10px;
 }
 .menu-list{
     position: absolute;
@@ -149,8 +152,11 @@ export default {
 .menu-list-desktop{
     display: none;
 }
-.overflow{
-    overflow: hidden;
+
+.listItems{
+ display: flex;
+    flex-direction: column;
+    font-size: 30px;
 }
 /* .mobileList{
     position: absolute;
@@ -158,11 +164,11 @@ export default {
     z-index: 20;
 } */
 
-ul{
+/* ul{
     display: flex;
     flex-direction: column;
     font-size: 30px;
-}
+} */
 
 @media (min-width: 600px) {
     
@@ -184,9 +190,13 @@ ul{
     .backgorund-menu{
         display: none;
     }
-    ul{
+    .listItems{
         display: flex;
         flex-direction: row;
     }
+    /* ul{
+        display: flex;
+        flex-direction: row;
+    } */
 }
 </style>
